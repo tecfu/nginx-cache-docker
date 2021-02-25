@@ -17,13 +17,19 @@ I use it while performing programming presentations with life coding sessions. I
 
 ## Sample usage
 
+Build the container
+```
+docker build -t tecfu/nginx-cache-image -f Dockerfile .
+```
+
 Start the container
 ```
-docker run -d --name nginx-long-cache \
-  -p 8787:8080 \
+docker run -d --name nginx-cache-container \
+  -p 3030:3030 \
+  --mount src="$(pwd)/nginx.conf",target=/etc/nginx/nginx.conf,type=bind \
   -v $HOME/.nginx/longcache/log:/var/log/nginx \
   -v $HOME/.nginx/longcache/cache:/var/cache/nginx \
-  mendlik/nginx-cache
+  tecfu/nginx-cache-image
 ```
 Setup system wide network proxy for HTTP ([Example for Ubuntu](https://help.ubuntu.com/stable/ubuntu-help/net-proxy.html))
 
