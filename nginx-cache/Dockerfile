@@ -1,4 +1,4 @@
-FROM mendlik/nginx:1.0.0
+FROM nginx:1.19.6-alpine
 
 ARG BUILD_DATE
 ARG VERSION
